@@ -63,6 +63,18 @@ export default class BillsScreen extends React.Component {
         });
     }
 
+    onSwipedRight = (ix) => {
+        vote({
+            'value': -1,
+            'username': global.username,
+            'bill_id': this.state.bills[ix]['id']
+        });
+    }
+
+    onSwipedLeft = (ix) => {
+
+    }
+
     render(){
       return (
         <View style={{ flex: 1 }}>
@@ -78,8 +90,8 @@ export default class BillsScreen extends React.Component {
             ref={swiper => {
               this.swiper = swiper
             }}
-            onSwiped={() => console.log('onSwiped')}
-            onSwipedLeft={() => console.log('onSwipedLeft')}
+            onSwipedRight={this.onSwipedRight}
+            onSwipedLeft={this.onSwipedLeft}
           >
             {this.renderBills()}
           </CardStack>

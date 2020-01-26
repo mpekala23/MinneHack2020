@@ -172,6 +172,7 @@ class Votes_:
                 self._Votes.update_one(data,
                     {'$set':{'value':data['value']}},
                     upsert=False)
+                return data
         self._Votes.insert_one(data)
         return data
 
