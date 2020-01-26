@@ -113,14 +113,38 @@ export default class BillsScreen extends React.Component {
                   style={styles.btnStyle}
                   activeOpacity={0.5}
                   onPress={this.loadBills}
+                  linearGradientProps={{
+                    colors: ['#00e78b','#00d0e7'],
+                    start: [1, 0],
+                    end: [0.2, 0],
+                  }}
                 >
                   <Icon
                      reverse
                      name='refresh'
-                     color='green'
+                     color='#00e78b'
                      size={40}
                     />
                 </TouchableOpacity>
+                /*<Button
+                   // Don't forget this!
+                  linearGradientProps={{
+                    colors: ['#00e78b','#00d0e7'],
+                    start: [1, 0],
+                    end: [0.2, 0],
+                  }}
+                  icon={
+                    <Icon
+                     reverse
+                     name='refresh'
+                     color='transparent'
+                     size={40}
+                    />
+                  }
+                  style={styles.btnStyle}
+                  activeOpacity={0.5}
+                  onPress={this.loadBills}
+                />*/
             )
         }
     }
@@ -159,7 +183,7 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='ios-trash'
                    type='ionicon'
-                   color='grey'
+                   color='#ff833a'
                    size={40}
                   />
               </TouchableOpacity>
@@ -212,6 +236,7 @@ const styles = StyleSheet.create({
       height: 1
     },
     shadowOpacity:0.5,
+
   },
   label: {
     textAlign: 'center',
@@ -252,6 +277,7 @@ const styles = StyleSheet.create({
   btnStyle:{
     marginLeft: 20,
     marginRight: 15,
+    marginTop: 45,
   },
   title: {
       fontSize: 24,
@@ -266,4 +292,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start'
   }
+
+
+
 });
