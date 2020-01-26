@@ -91,6 +91,7 @@ export default class BillsScreen extends React.Component {
       return (
         <View style={{ flex: 1 }}>
           <Statusbar/>
+          <Text style={styles.title}>Hot Bills</Text>
           <CardStack
             style={styles.content}
             renderNoMoreCards={() => {
@@ -210,5 +211,12 @@ const styles = StyleSheet.create({
   btnStyle:{
     marginLeft: 20,
     marginRight: 15,
-  }
+  },
+  title: {
+      fontSize: 24,
+      justifyContent: 'center',
+      fontWeight: 'bold',
+      margin: 10,
+      alignSelf: 'center'
+  },
 });
