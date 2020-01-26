@@ -3,6 +3,8 @@ import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
     TouchableOpacity, StyleSheet } from 'react-native';
 import { registerUser } from '../api';
 import Statusbar from '../components/statusbar.js';
+import { Button } from 'react-native-elements';
+
 
 export default class SubscriptionsScreen extends React.Component {
     constructor(props) {
@@ -58,9 +60,9 @@ export default class SubscriptionsScreen extends React.Component {
                         onChangeText={this.onChangePassword}
                     />
                 </View>
-                <TouchableOpacity onPress={this.submit}>
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                <Button onPress={this.submit}
+                      title="Register"
+                />
             </View>
         )
     }

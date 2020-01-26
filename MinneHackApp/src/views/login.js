@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
-    TouchableOpacity, StyleSheet, Button } from 'react-native';
+    TouchableOpacity, StyleSheet } from 'react-native';
+import { Button, Input } from 'react-native-elements';
 import { checkLogin } from '../api';
 import Statusbar from '../components/statusbar.js';
 
@@ -54,22 +55,20 @@ export default class LoginScreen extends React.Component {
             >
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Username: </Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangeUsername}
-                        value={this.state.username}
-                    />
-                </View>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Password:  </Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangePassword}
-                        value={this.state.password}
-                    />
-                </View>
+                <Input
+                  style={styles.bod}
+                  placeholder='Username'
+                  onChangeText={this.onChangeUsername}
+                  value={this.state.username}
+                  leftIcon={{ type: 'font-awesome', name: 'user' }}
+                />
+                <Input
+                  style={styles.bod}
+                  placeholder='Password'
+                  onChangeText={this.onChangePassword}
+                  value={this.state.password}
+                  leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                />
 
                 <Button
                   onPress={this.submit}
@@ -93,22 +92,13 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     header: {
-      flex: 0.4,
+      flex: 0.1,
       justifyContent: 'center',
       fontSize: 50,
       fontWeight: 'bold',
       left: 10
     },
-    inputField: {
-      flexDirection: 'column',
-      margin: 4,
-    },
-    inputSpace: {
-      height: 25,
-      borderWidth: 1,
-      borderRadius: 5,
-    },
     label: {
       fontSize: 20,
-    }
+    },
 });
