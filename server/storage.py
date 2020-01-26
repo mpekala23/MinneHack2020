@@ -182,6 +182,10 @@ class Votes_:
         self._Votes.delete_one(data)
         return data
 
+    def count_votes(self, bill_id, value):
+        results = self._Votes.find({'bill_id':bill_id,'value':value})
+        return results.count(True)
+
 Users = Users_(db)
 Bills = Bills_(db)
 Subscriptions = Subscriptions_(db)

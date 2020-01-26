@@ -58,8 +58,14 @@ def get_bills():
     try:
         username = request.args['username']
         my_subs = Subscriptions.get_subscriptions(username)
+        bills = Bills.get_user_bills(username, my_subs)
+        results = []
+        for bill in bills:
+            bill['upvotes'] = Votes.count_votes(bill['id'],'1')
+            bill['downvotes'] = Votes.count_votes(bill['id'],'-1')
+            results.append(bill)
         return jsonify({
-            'bills': Bills.get_user_bills(username, my_subs),
+            'bills': results,
         })
     except Exception as e:
         return str(e)
@@ -108,7 +114,7 @@ def delete_subscription():
         return str(e)
 
 
-@app.route('/vote')
+@app.route('/vote', methods=['POST'])
 def vote():
     try:
         data = {
@@ -116,7 +122,7 @@ def vote():
             'username': request.form['username'],
             'bill_id': request.form['bill_id'],
         }
-        return str(Bills.insert_vote(data))
+        return str(Votes.insert_vote(data))
     except Exception as e:
         return str(e)
 
