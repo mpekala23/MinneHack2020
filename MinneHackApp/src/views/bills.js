@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import { Icon } from 'react-native-elements'
-import { getBills } from '../api';
+import { getBills, vote } from '../api';
 import Statusbar from '../components/statusbar.js';
 
 export default class BillsScreen extends React.Component {
@@ -61,7 +61,7 @@ export default class BillsScreen extends React.Component {
 
           <View style={styles.footer}>
             <View style={styles.actionBar}>
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); }}>
+              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); submit = () => {vote(global.username,"hi bill", 1)}}}>
                 <Icon
                    reverse
                    name='ios-heart'
@@ -71,7 +71,7 @@ export default class BillsScreen extends React.Component {
                   />
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeLeft(); }}>
+              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeLeft(); submit = () => {vote(global.username,"hi bill", -1)}}}>
                 <Icon
                    reverse
                    name='ios-trash'

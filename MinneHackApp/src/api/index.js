@@ -18,6 +18,19 @@ export function getBills() {
     );
 }
 
+export function vote(bill, value) {
+  let form = new FormData();
+  form.append('username', username)
+  form.append('bill', bill)
+  form.append('value', value)
+  return axios({
+    method: 'post',
+    url: API_URL + '/vote',
+    data: form,
+    headers: {'Content-Type': 'multipart/form-data' }
+  });
+}
+
 export function registerUser(username, password) {
     let form = new FormData();
     form.append('username', username)
