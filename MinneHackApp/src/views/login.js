@@ -43,6 +43,7 @@ export default class LoginScreen extends React.Component {
     }
 
     render() {
+        const {navigate} = this.props.navigation;
         return (
             <TouchableOpacity
                 style={{flex:1, justifyContent: 'space-evenly'}}
@@ -69,20 +70,25 @@ export default class LoginScreen extends React.Component {
                         value={this.state.password}
                     />
                 </View>
+
                 <Button
                   onPress={this.submit}
                   title="Sign In"
                 />
-                <Button
+                {/*}<Button
                   onPress={() => {
                     alert('Register');
                   }}
                   title="Register"
-                />
+                />*/}
+                  <TouchableOpacity onPress={() => navigate('Register')}>
+                      <Text>Register</Text>
+                  </TouchableOpacity>
               {/*<TouchableOpacity onPress={this.submit}>
-                <Text>Submit</Text>
+                  <Text>Log in</Text>
               </TouchableOpacity>*/}
             </TouchableOpacity>
+
         )
     }
 }
