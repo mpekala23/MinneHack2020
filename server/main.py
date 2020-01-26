@@ -1,7 +1,9 @@
 from flask import Flask, request, render_template, jsonify
+from flask_cors import CORS
 from storage import Users, Bills, Comments, Subscriptions, Votes
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/')
 def homepage():
@@ -65,6 +67,41 @@ def delete_bill():
     try:
         id = request.form['id']
         return str(Bills.delete_bill(id))
+    except Exception as e:
+        return str(e)
+
+@app.route('/insert_subscription', methods=['POST'])
+def insert_subscription():
+    try:
+        data = {
+            'username': request.form['username'],
+            'topic':request.form['topic'],
+        }
+        return str(Subscriptions.insert_subscription(data))
+    except Exception as e:
+        return str(e)
+
+@app.route('/get_subscriptions', methods=['GET'])
+def get_subscriptions():
+    try:
+        username = request.args['username']
+        my_subs = Subscriptions.get_subscriptions(username)
+        options = Bills.get_all_topics()
+        return jsonify({
+            'my_subscriptions': my_subs,
+            'options': options,
+        })
+    except Exception as e:
+        return str(e)
+
+@app.route('/delete_subscription', methods=['POST'])
+def delete_subscription():
+    try:
+        data = {
+            'username': request.form['username'],
+            'topic':request.form['topic'],
+        }
+        return str(Subscriptions.delete_subscription(data))
     except Exception as e:
         return str(e)
 
