@@ -75,16 +75,14 @@ export default class LoginScreen extends React.Component {
                   onPress={this.submit}
                   title="Sign In"
                 />
-                {/*}<Button
-                  onPress={() => {
-                    alert('Register');
-                  }}
+                <Button
+                  onPress={() => navigate('Register')}
                   title="Register"
-                />*/}
-                  <TouchableOpacity onPress={() => navigate('Register')}>
-                      <Text>Register</Text>
-                  </TouchableOpacity>
-              {/*<TouchableOpacity onPress={this.submit}>
+                />
+              {/*}<TouchableOpacity onPress={() => navigate('Register')}>
+                  <Text>Register</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.submit}>
                   <Text>Log in</Text>
               </TouchableOpacity>*/}
             </TouchableOpacity>
