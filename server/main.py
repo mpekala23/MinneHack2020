@@ -1,4 +1,4 @@
-from flask import Flask, request, render_template
+from flask import Flask, request, render_template, jsonify
 from storage import Users, Bills, Comments, Subscriptions, Votes
 
 app = Flask(__name__)
@@ -16,6 +16,15 @@ def insert_user():
     except Exception as e:
         return str(e)
 
+@app.route('/check_user', methods=['GET'])
+def check_user():
+    try:
+        username = request.args.get('username')
+        password = request.args.get('password')
+        return jsonify({'status': Users.check_user(username, password)})
+    except Exception as e:
+        return jsonify({'status': False})
+
 @app.route('/delete_user', methods=['POST'])
 def delete_user():
     try:
@@ -27,18 +36,16 @@ def delete_user():
     except Exception as e:
         return str(e)
 
-
-
 @app.route('/insert_bill', methods=['POST'])
 def insert_bill():
     try:
         data = {
-            id: request.form['bill_status'],
-            body: request.form['body'],
-            author: request.form['author'],
-            last_action: request.form['last_action'],
-            summary: request.form['summary'],
-            topic: request.form['topic'],
+            'id': request.form['bill_status'],
+            'body': request.form['body'],
+            'author': request.form['author'],
+            'last_action': request.form['last_action'],
+            'summary': request.form['summary'],
+            'topic': request.form['topic'],
         }
         return str(Bills.insert_bill(data))
     except Exception as e:

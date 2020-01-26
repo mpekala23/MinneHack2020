@@ -48,13 +48,13 @@ class Bills_:
         self._Bills = db.bills
 
     def insert_bill(self, data):
-        if (self._Bills.find_one({'id':data.id})):
+        if (self._Bills.find_one({'id':data['id']})):
             return False
         self._Bills.insert_one(data)
         return data['id']
 
     def delete_bill(self, id):
-        if (not self._Bills.find_one({'id':data.id})):
+        if (not self._Bills.find_one({'id':data['id']})):
             return False
         self._Bills.delete_one({'id': id})
         return id
