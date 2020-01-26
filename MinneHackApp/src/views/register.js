@@ -47,7 +47,7 @@ export default class SubscriptionsScreen extends React.Component {
               onPress={() => {
                   Keyboard.dismiss();
                 }}
-                activeOpacity={1.0}
+              activeOpacity={1.0}
             >
                 <Statusbar/>
                 <Text style = {styles.intro}>Sign up to see the hottest bills trending in your area.</Text>
@@ -61,6 +61,7 @@ export default class SubscriptionsScreen extends React.Component {
                 <View style={styles.inputField}>
                     <Text style={styles.label}>Password:</Text>
                     <TextInput
+                        secureTextEntry={true}
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
                     />
@@ -69,18 +70,18 @@ export default class SubscriptionsScreen extends React.Component {
                   onPress={this.submit}
                   title="Submit"
                 />
+
+                {/*literally just a placeholder for formatting*/}
+                <Button
+                  onPress={this.submit}
+                  title=""
+                />
             </View>
         )
     }
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flex: 0.4,
-    fontSize: 50,
-    fontWeight: 'bold',
-    left: 4
-  },
   inputField: {
     flexDirection: 'column',
     margin: 4,
@@ -94,9 +95,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   intro: {
-    flex: 0.3,
+    flex: 0.16,
     fontSize: 36,
     alignSelf: 'center',
-    margin: 8
+    margin: 8,
   },
 });

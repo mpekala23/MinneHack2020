@@ -65,6 +65,7 @@ export default class LoginScreen extends React.Component {
                 <View style={styles.inputField}>
                     <Text style={styles.label}>Password:  </Text>
                     <TextInput
+                        secureTextEntry={true}
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
                         value={this.state.password}
@@ -86,14 +87,13 @@ export default class LoginScreen extends React.Component {
                   <Text>Log in</Text>
               </TouchableOpacity>*/}
             </TouchableOpacity>
-
         )
     }
 }
 
 const styles = StyleSheet.create({
     header: {
-      flex: 0.4,
+      flex: 0.2,
       fontSize: 50,
       fontWeight: 'bold',
       margin: 4,
