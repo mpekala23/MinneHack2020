@@ -43,7 +43,7 @@ export default class LoginScreen extends React.Component {
     render() {
         return (
             <TouchableOpacity
-                style={{flex:1}}
+                style={{flex:1, justifyContent: 'space-around'}}
                 onPress={() => {
                     Keyboard.dismiss();
                 }}
@@ -71,6 +71,15 @@ export default class LoginScreen extends React.Component {
                   onPress={this.submit}
                   title="Submit"
                 />
+                <Button
+                  onPress={() => {
+                    alert('Register');
+                  }}
+                  title="Register"
+                />
+              {/*<TouchableOpacity onPress={this.submit}>
+                <Text>Submit</Text>
+              </TouchableOpacity>*/}
             </TouchableOpacity>
         )
     }
@@ -78,7 +87,10 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     header: {
-
+      flex: 0.4,
+      justifyContent: 'center',
+      fontSize: 50,
+      left: 10
     },
     inputField: {
         flexDirection: 'row',
