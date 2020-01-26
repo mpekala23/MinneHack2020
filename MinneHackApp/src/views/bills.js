@@ -109,7 +109,7 @@ export default class BillsScreen extends React.Component {
               <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5}>
                 <Icon
                    reverse
-                   name='ios-share-alt'
+                   name='ios-text'
                    type='ionicon'
                    color='#efba12'
                    size={40}

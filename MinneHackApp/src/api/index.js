@@ -19,6 +19,18 @@ export function getBills(username) {
     );
 }
 
+export function registerUser(username, password) {
+    let form = new FormData();
+    form.append('username', username)
+    form.append('password', password)
+    return axios({
+      method: 'post',
+      url: API_URL + '/insert_user',
+      data: form,
+      headers: {'Content-Type': 'multipart/form-data' }
+    });
+}
+
 export function getSubscriptions(username) {
     return axios.get(API_URL + '/get_subscriptions',{
         params: {
