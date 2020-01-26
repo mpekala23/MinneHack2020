@@ -97,12 +97,12 @@ export default class BillsScreen extends React.Component {
         if (this.state.loading) {
             return (
                 <Image
-                  style={{width: 60, height: 60, marginTop: 30}}
+                  style={{width: 60, height: 60, marginTop: 10}}
                   source={require('../assets/loading.gif')}
                 />
             );
         } else {
-            return <View style={{width: 60, height: 60, marginTop: 30}}/>
+            return <View style={{width: 60, height: 60, marginTop: 10}}/>
         }
     }
 
@@ -176,7 +176,6 @@ const styles = StyleSheet.create({
   actionBar: {
     flex: 1,
     flexDirection: 'row',
-    marginBottom: 90,
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -188,7 +187,7 @@ const styles = StyleSheet.create({
   card:{
     width: 350,
     height: 300,
-    marginTop: -70,
+    marginTop: -40,
     backgroundColor: '#ffffff',
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
@@ -207,7 +206,7 @@ const styles = StyleSheet.create({
   },
   footer:{
     flex:1,
-    marginBottom:0,
+    marginBottom:50,
   },
   buttonContainer:{
     width:220,
