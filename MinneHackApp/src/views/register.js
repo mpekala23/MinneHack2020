@@ -3,7 +3,7 @@ import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
     TouchableOpacity, StyleSheet } from 'react-native';
 import { registerUser } from '../api';
 import Statusbar from '../components/statusbar.js';
-import { Button } from 'react-native-elements';
+import { Button, Input } from 'react-native-elements';
 
 
 export default class SubscriptionsScreen extends React.Component {
@@ -53,20 +53,20 @@ export default class SubscriptionsScreen extends React.Component {
             >
                 <Statusbar/>
                 <Text style = {styles.intro}>Sign up to see the hottest bills trending in your area.</Text>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Username:</Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangeUsername}
-                    />
-                </View>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Password:</Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangePassword}
-                    />
-                </View>
+                <Input
+                  style={styles.bod}
+                  placeholder='Username'
+                  onChangeText={this.onChangeUsername}
+                  value={this.state.username}
+                  leftIcon={{ type: 'font-awesome', name: 'user' }}
+                />
+                <Input
+                  style={styles.bod}
+                  placeholder='Password'
+                  onChangeText={this.onChangePassword}
+                  value={this.state.password}
+                  leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                />
                 <Button onPress={this.submit}
                       title="Register"
                 />
