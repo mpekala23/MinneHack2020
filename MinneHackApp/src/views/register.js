@@ -1,9 +1,43 @@
 import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
     TouchableOpacity, StyleSheet } from 'react-native';
+import { registerUser } from '../api';
 import Statusbar from '../components/statusbar.js';
 
 export default class SubscriptionsScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            username: "",
+            password: "",
+        }
+    }
+
+    onChangeUsername = (newText) => {
+        this.setState({
+            username: newText,
+        });
+    }
+
+    onChangePassword = (newText) => {
+        this.setState({
+            password: newText,
+        });
+    }
+
+    submit = () => {
+        registerUser(this.state.username, this.state.password).then(
+            (res) => {
+                if (res.data.status) {
+                    this.props.navigation.navigate('App');
+                }
+            },
+            (err) => {
+
+            }
+        )
+    }
+
     render() {
         return (
             <View>

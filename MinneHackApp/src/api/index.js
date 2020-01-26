@@ -15,3 +15,12 @@ export function getBills() {
         }}
     );
 }
+
+export function registerUser(username, password) {
+    return axios.post('https://hot-bills.herokuapp.com/insert_user',{
+        params: {
+              username: username,
+              psasword: password,
+        }}
+    );
+}

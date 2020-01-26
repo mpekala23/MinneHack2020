@@ -69,7 +69,7 @@ export default class LoginScreen extends React.Component {
                 <TouchableOpacity onPress={this.submit}>
                     <Text>Log in</Text>
                 </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigate('Register', {name: 'Jane'})}>
+                <TouchableOpacity onPress={() => navigate('Register')}>
                     <Text>Register</Text>
                 </TouchableOpacity>
             </TouchableOpacity>
