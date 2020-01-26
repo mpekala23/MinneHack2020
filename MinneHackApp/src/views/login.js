@@ -29,11 +29,13 @@ export default class LoginScreen extends React.Component {
         checkLogin(this.state.username, this.state.password).then(
             (res) => {
                 if (res.data.status) {
+                    global.username = this.state.username;
                     this.props.navigation.navigate('App');
                 }
             },
             (err) => {
-
+                console.log("Error checking login");
+                console.log(err);
             }
         )
     }
