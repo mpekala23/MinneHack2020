@@ -64,15 +64,29 @@ export default class BillsScreen extends React.Component {
     }
 
     onSwipedRight = (ix) => {
-        vote({
-            'value': -1,
-            'username': global.username,
-            'bill_id': this.state.bills[ix]['id']
-        });
+        vote(this.state.bills[ix]['id'],1,global.username).then(
+            (res) => {
+                console.log('success');
+                console.log(res);
+            },
+            (err) => {
+                console.log('error');
+                console.log(err);
+            }
+        );
     }
 
     onSwipedLeft = (ix) => {
-
+        vote(this.state.bills[ix]['id'],-1,global.username).then(
+            (res) => {
+                console.log('success');
+                console.log(res);
+            },
+            (err) => {
+                console.log('error');
+                console.log(err);
+            }
+        );
     }
 
     render(){

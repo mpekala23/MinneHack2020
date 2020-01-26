@@ -19,10 +19,10 @@ export function getBills(username) {
     );
 }
 
-export function vote(bill, value) {
+export function vote(bill, value, username) {
   let form = new FormData();
   form.append('username', username)
-  form.append('bill', bill)
+  form.append('bill_id', bill)
   form.append('value', value)
   return axios({
     method: 'post',
