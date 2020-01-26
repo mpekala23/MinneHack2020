@@ -1,8 +1,11 @@
 import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
-    TouchableOpacity, Button, StyleSheet } from 'react-native';
+    TouchableOpacity, StyleSheet} from 'react-native';
+import * as Invisibutton from 'react-native';
 import { registerUser } from '../api';
 import Statusbar from '../components/statusbar.js';
+import { Button, Input } from 'react-native-elements';
+
 
 export default class SubscriptionsScreen extends React.Component {
     constructor(props) {
@@ -47,27 +50,33 @@ export default class SubscriptionsScreen extends React.Component {
               onPress={() => {
                   Keyboard.dismiss();
                 }}
-                activeOpacity={1.0}
+              activeOpacity={1.0}
             >
                 <Statusbar/>
                 <Text style = {styles.intro}>Sign up to see the hottest bills trending in your area.</Text>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Username:</Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangeUsername}
-                    />
-                </View>
-                <View style={styles.inputField}>
-                    <Text style={styles.label}>Password:</Text>
-                    <TextInput
-                        style={styles.inputSpace}
-                        onChangeText={this.onChangePassword}
-                    />
-                </View>
-                <Button
+
+                <Input
+                  style={styles.bod}
+                  placeholder='Username'
+                  onChangeText={this.onChangeUsername}
+                  value={this.state.username}
+                  leftIcon={{ type: 'font-awesome', name: 'user' }}
+                />
+                <Input
+                  style={styles.bod}
+                  placeholder='Password'
+                  onChangeText={this.onChangePassword}
+                  value={this.state.password}
+                  leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                />
+                <Button onPress={this.submit}
+                      title="Register"
+                />
+
+                {/*literally just a placeholder for formatting*/}
+                <Invisibutton.Button
                   onPress={this.submit}
-                  title="Submit"
+                  title=""
                 />
             </View>
         )
@@ -75,12 +84,6 @@ export default class SubscriptionsScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-  header: {
-    flex: 0.4,
-    fontSize: 50,
-    fontWeight: 'bold',
-    left: 4
-  },
   inputField: {
     flexDirection: 'column',
     margin: 4,
@@ -94,9 +97,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   intro: {
-    flex: 0.3,
+    flex: 0.16,
     fontSize: 36,
     alignSelf: 'center',
-    margin: 8
+    margin: 8,
   },
 });

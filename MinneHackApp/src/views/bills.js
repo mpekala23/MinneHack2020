@@ -56,6 +56,8 @@ export default class BillsScreen extends React.Component {
                     <Text>Summary: {bill.summary}</Text>
                     <Text>Body: {bill.body}</Text>
                     <Text>Last Action: {bill.last_action}</Text>
+                    <Text>Upvotes: {bill.upvotes}</Text>
+                    <Text>Downvotes: {bill.downvotes}</Text>
                 </Card>
             );
         });
