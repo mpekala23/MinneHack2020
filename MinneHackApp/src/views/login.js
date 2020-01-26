@@ -30,6 +30,8 @@ export default class LoginScreen extends React.Component {
             (res) => {
                 if (res.data.status) {
                     this.props.navigation.navigate('App');
+                } else {
+                    alert('Incorrect username/password.');
                 }
             },
             (err) => {
