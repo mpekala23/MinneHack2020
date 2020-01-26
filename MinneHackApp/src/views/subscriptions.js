@@ -124,7 +124,6 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     title: {
-        flex: 1,
         fontSize: 24,
     },
     subOption: {

@@ -19,13 +19,33 @@ export default class BillsScreen extends React.Component {
         }
     }
 
-    componentDidMount() {
-        getBills().then(
+    loadBills = () => {
+        getBills(global.username).then(
             (res) => {
                 this.setState({bills: res.data.bills});
             },
             (err) => {}
         );
+    }
+
+    componentDidMount() {
+        this.loadBills();
+        this.subs = [
+          this.props.navigation.addListener('didFocus', this.componentDidFocus),
+          this.props.navigation.addListener('willBlur', this.componentWillBlur),
+        ];
+    }
+
+    componentWillUnmount() {
+      this.subs.forEach(sub => sub.remove());
+    }
+
+    componentDidFocus = () => {
+        this.loadBills();
+    }
+
+    componentWillBlur = () => {
+
     }
 
     renderBills = () => {
@@ -49,7 +69,12 @@ export default class BillsScreen extends React.Component {
           <Statusbar/>
           <CardStack
             style={styles.content}
-            renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>No more Bills :(</Text>}
+            renderNoMoreCards={() => {
+                return (
+                    <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>
+                        No more bills :(
+                    </Text>
+                )}}
             ref={swiper => {
               this.swiper = swiper
             }}

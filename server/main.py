@@ -56,8 +56,10 @@ def insert_bill():
 @app.route('/get_bills', methods=['GET'])
 def get_bills():
     try:
+        username = request.args['username']
+        my_subs = Subscriptions.get_subscriptions(username)
         return jsonify({
-            'bills': Bills.get_all_bills(),
+            'bills': Bills.get_user_bills(username, my_subs),
         })
     except Exception as e:
         return str(e)
