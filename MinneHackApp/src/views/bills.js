@@ -86,7 +86,7 @@ export default class BillsScreen extends React.Component {
 
           <View style={styles.footer}>
             <View style={styles.actionBar}>
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); submit = () => {vote(global.username,"hi bill", 1)}}}>
+              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); }}>
                 <Icon
                    reverse
                    name='ios-heart'
@@ -96,7 +96,7 @@ export default class BillsScreen extends React.Component {
                   />
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeLeft(); submit = () => {vote(global.username,"hi bill", -1)}}}>
+              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeLeft(); }}>
                 <Icon
                    reverse
                    name='ios-trash'
