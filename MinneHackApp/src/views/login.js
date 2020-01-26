@@ -90,7 +90,7 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     flex: 0.2,
-    justifyContent: 'center',
+    alignSelf: 'center',
     fontSize: 50,
     fontWeight: 'bold',
     left: 10
