@@ -59,25 +59,33 @@ class Bills_:
         self._Bills.delete_one({'id': id})
         return id
 
+    def bill_to_dict(self, item):
+        return {
+            'body': item['body'],
+            'id': item['id'],
+            'last_action': item['last_action'],
+            'author': item['author'],
+            'summary': item['summary'],
+            'topic': item['topic'],
+        }
+
     def get_all_bills(self):
         result = []
         cursor = self._Bills.find({})
         for item in cursor:
-            result.append({
-                'body': item['body'],
-                'id': item['id'],
-                'last_action': item['last_action'],
-                'author': item['author'],
-                'summary': item['summary'],
-                'topic': item['topic'],
-            })
+            result.append(self.bill_to_dict(item))
+        return result
+
+    def get_all_topics(self):
+        result = []
+        cursor = self._Bills.find({}).distinct('topic')
+        for item in cursor:
+            result.append(item)
         return result
 
 """
 username: '',
-ONE OF:
-    topic: '',
-    committee: '',
+topic: '',
 """
 class Subscriptions_:
     def __init__(self, db):
@@ -89,12 +97,24 @@ class Subscriptions_:
         self._Subscriptions.insert_one(data)
         return data
 
-    # expects {username: '', topic: '' OR committee: ''}
     def delete_subscription(self, data):
         if (not self._Subscriptions.find_one(data)):
             return False
         self._Subscriptions.delete_one(data)
         return data
+
+    def sub_to_dict(self, item):
+        return {
+            'username': item['username'],
+            'topic': item['topic'],
+        }
+
+    def get_subscriptions(self, username):
+        result = []
+        cursor = self._Subscriptions.find({'username':username})
+        for item in cursor:
+            result.append(item['topic'])
+        return result
 
 """
 id: # >= 0, DO NOT PASS, WILL BE GENERATED

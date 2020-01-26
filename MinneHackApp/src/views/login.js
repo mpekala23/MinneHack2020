@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
-    TouchableOpacity, StyleSheet } from 'react-native';
+    TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { checkLogin } from '../api';
 import Statusbar from '../components/statusbar.js';
 
@@ -29,11 +29,15 @@ export default class LoginScreen extends React.Component {
         checkLogin(this.state.username, this.state.password).then(
             (res) => {
                 if (res.data.status) {
+                    global.username = this.state.username;
                     this.props.navigation.navigate('App');
+                } else {
+                    alert('Incorrect username/password.');
                 }
             },
             (err) => {
-
+                console.log("Error checking login");
+                console.log(err);
             }
         )
     }
@@ -42,7 +46,7 @@ export default class LoginScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <TouchableOpacity
-                style={{flex:1}}
+                style={{flex:1, justifyContent: 'space-around'}}
                 onPress={() => {
                     Keyboard.dismiss();
                 }}
@@ -51,7 +55,7 @@ export default class LoginScreen extends React.Component {
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Username:</Text>
+                    <Text style={styles.inputLabel}>Username: </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangeUsername}
@@ -59,7 +63,7 @@ export default class LoginScreen extends React.Component {
                     />
                 </View>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Password:</Text>
+                    <Text style={styles.inputLabel}>Password:  </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
@@ -80,7 +84,10 @@ export default class LoginScreen extends React.Component {
 
 const styles = StyleSheet.create({
     header: {
-
+      flex: 0.4,
+      justifyContent: 'center',
+      fontSize: 50,
+      left: 10
     },
     inputField: {
         flexDirection: 'row',
