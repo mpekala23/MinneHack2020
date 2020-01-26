@@ -125,22 +125,13 @@ export default class BillsScreen extends React.Component {
 
           <View style={styles.footer}>
             <View style={styles.actionBar}>
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); }}>
-                <Icon
-                   reverse
-                   name='ios-heart'
-                   type='ionicon'
-                   color='#00e78b'
-                   size={40}
-                  />
-              </TouchableOpacity>
 
               <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeLeft(); }}>
                 <Icon
                    reverse
                    name='ios-trash'
                    type='ionicon'
-                   color='#ff2c14'
+                   color='#333333'
                    size={40}
                   />
               </TouchableOpacity>
@@ -154,6 +145,16 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='refresh'
                    color='#efba12'
+                   size={40}
+                  />
+              </TouchableOpacity>
+
+              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); }}>
+                <Icon
+                   reverse
+                   name='ios-heart'
+                   type='ionicon'
+                   color='#ff5555'
                    size={40}
                   />
               </TouchableOpacity>
@@ -174,7 +175,7 @@ const styles = StyleSheet.create({
   actionBar: {
     flex: 1,
     flexDirection: 'row',
-    backgroundColor: '#fff',
+    marginBottom: 90,
     alignItems: 'center',
     justifyContent: 'center',
   },
