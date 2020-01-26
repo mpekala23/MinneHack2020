@@ -46,7 +46,7 @@ export default class LoginScreen extends React.Component {
         const {navigate} = this.props.navigation;
         return (
             <TouchableOpacity
-                style={{flex:1, justifyContent: 'space-around'}}
+                style={{flex:1, justifyContent: 'space-evenly'}}
                 onPress={() => {
                     Keyboard.dismiss();
                 }}
@@ -55,7 +55,7 @@ export default class LoginScreen extends React.Component {
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Username: </Text>
+                    <Text style={styles.label}>Username: </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangeUsername}
@@ -63,19 +63,28 @@ export default class LoginScreen extends React.Component {
                     />
                 </View>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Password:  </Text>
+                    <Text style={styles.label}>Password:  </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
                         value={this.state.password}
                     />
                 </View>
-                <TouchableOpacity onPress={this.submit}>
-                    <Text>Log in</Text>
-                </TouchableOpacity>
-                <TouchableOpacity onPress={() => navigate('Register')}>
-                    <Text>Register</Text>
-                </TouchableOpacity>
+
+                <Button
+                  onPress={this.submit}
+                  title="Sign In"
+                />
+                <Button
+                  onPress={() => navigate('Register')}
+                  title="Register"
+                />
+              {/*}<TouchableOpacity onPress={() => navigate('Register')}>
+                  <Text>Register</Text>
+              </TouchableOpacity>
+              <TouchableOpacity onPress={this.submit}>
+                  <Text>Log in</Text>
+              </TouchableOpacity>*/}
             </TouchableOpacity>
 
         )
@@ -87,16 +96,19 @@ const styles = StyleSheet.create({
       flex: 0.4,
       justifyContent: 'center',
       fontSize: 50,
+      fontWeight: 'bold',
       left: 10
     },
     inputField: {
-        flexDirection: 'row',
+      flexDirection: 'column',
+      margin: 4,
     },
     inputSpace: {
-        flex: 1,
-        height: 25,
-        borderWidth: 1,
-        margin: 4,
-        borderRadius: 5,
+      height: 25,
+      borderWidth: 1,
+      borderRadius: 5,
+    },
+    label: {
+      fontSize: 20,
     }
 });
