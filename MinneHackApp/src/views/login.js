@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
-    TouchableOpacity, StyleSheet } from 'react-native';
+    TouchableOpacity, StyleSheet, Button } from 'react-native';
 import { checkLogin } from '../api';
 import Statusbar from '../components/statusbar.js';
 
@@ -50,7 +50,7 @@ export default class LoginScreen extends React.Component {
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Username:</Text>
+                    <Text style={styles.inputLabel}>Username: </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangeUsername}
@@ -58,16 +58,17 @@ export default class LoginScreen extends React.Component {
                     />
                 </View>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Password:</Text>
+                    <Text style={styles.inputLabel}>Password:  </Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
                         value={this.state.password}
                     />
                 </View>
-                <TouchableOpacity onPress={this.submit}>
-                    <Text>Submit</Text>
-                </TouchableOpacity>
+                <Button
+                  onPress={this.submit}
+                  title="Submit"
+                />
             </TouchableOpacity>
         )
     }
