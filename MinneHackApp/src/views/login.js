@@ -2,6 +2,7 @@ import * as React from 'react';
 import { View, Text, TextInput, Keyboard, KeyboardAvoidingView,
     TouchableOpacity, StyleSheet } from 'react-native';
 import { checkLogin } from '../api';
+import Statusbar from '../components/statusbar.js';
 
 export default class LoginScreen extends React.Component {
     constructor(props) {
@@ -28,7 +29,7 @@ export default class LoginScreen extends React.Component {
         checkLogin(this.state.username, this.state.password).then(
             (res) => {
                 if (res.data.status) {
-                    this.props.navigation.navigate('Bills');
+                    this.props.navigation.navigate('App');
                 }
             },
             (err) => {
@@ -46,6 +47,7 @@ export default class LoginScreen extends React.Component {
                 }}
                 activeOpacity={1.0}
             >
+                <Statusbar/>
                 <Text style={styles.header}>Login</Text>
                 <View style={styles.inputField}>
                     <Text style={styles.inputLabel}>Username:</Text>

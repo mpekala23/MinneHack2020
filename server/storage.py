@@ -59,6 +59,20 @@ class Bills_:
         self._Bills.delete_one({'id': id})
         return id
 
+    def get_all_bills(self):
+        result = []
+        cursor = self._Bills.find({})
+        for item in cursor:
+            result.append({
+                'body': item['body'],
+                'id': item['id'],
+                'last_action': item['last_action'],
+                'author': item['author'],
+                'summary': item['summary'],
+                'topic': item['topic'],
+            })
+        return result
+
 """
 username: '',
 ONE OF:

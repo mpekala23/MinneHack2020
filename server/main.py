@@ -51,6 +51,15 @@ def insert_bill():
     except Exception as e:
         return str(e)
 
+@app.route('/get_bills', methods=['GET'])
+def get_bills():
+    try:
+        return jsonify({
+            'bills': Bills.get_all_bills(),
+        })
+    except Exception as e:
+        return str(e)
+
 @app.route('/delete_bill', methods=['POST'])
 def delete_bill():
     try:
