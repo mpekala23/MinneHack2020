@@ -96,13 +96,32 @@ export default class BillsScreen extends React.Component {
     loadingStatus = () => {
         if (this.state.loading) {
             return (
-                <Image
-                  style={{width: 60, height: 60, marginTop: 10}}
-                  source={require('../assets/loading.gif')}
-                />
+                <View style={[styles.btnStyle,{
+                    width:98,
+                    alignItems: 'center',
+                    marginBottom: 5,
+                }]}>
+                    <Image
+                      style={{width: 60, height: 60, marginTop: 10}}
+                      source={require('../assets/loading.gif')}
+                    />
+                </View>
             );
         } else {
-            return <View style={{width: 60, height: 60, marginTop: 10}}/>
+            return (
+                <TouchableOpacity
+                  style={styles.btnStyle}
+                  activeOpacity={0.5}
+                  onPress={this.loadBills}
+                >
+                  <Icon
+                     reverse
+                     name='refresh'
+                     color='green'
+                     size={40}
+                    />
+                </TouchableOpacity>
+            )
         }
     }
 
@@ -111,7 +130,6 @@ export default class BillsScreen extends React.Component {
         <View style={{ flex: 1, alignItems: 'center'}}>
           <Statusbar/>
           <Text style={styles.title}>Hot Bills</Text>
-          {this.loadingStatus()}
           <CardStack
             style={styles.content}
             renderNoMoreCards={this.renderNoMoreCards}
@@ -137,18 +155,7 @@ export default class BillsScreen extends React.Component {
                   />
               </TouchableOpacity>
 
-              <TouchableOpacity
-                style={styles.btnStyle}
-                activeOpacity={0.5}
-                onPress={this.loadBills}
-              >
-                <Icon
-                   reverse
-                   name='refresh'
-                   color='green'
-                   size={40}
-                  />
-              </TouchableOpacity>
+              {this.loadingStatus()}
 
               <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5} onPress={() => {this.swiper.swipeRight(); }}>
                 <Icon
@@ -186,8 +193,8 @@ const styles = StyleSheet.create({
   },
   card:{
     width: 350,
-    height: 300,
-    marginTop: -40,
+    height: 420,
+    marginTop: 0,
     backgroundColor: '#ffffff',
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
