@@ -1,5 +1,4 @@
 from flask_pymongo import MongoClient
-import pymongo
 import bcrypt
 
 client = MongoClient("mongodb+srv://client:client@minnehack2020-dvyxh.gcp.mongodb.net/test?retryWrites=true&w=majority")
@@ -32,20 +31,16 @@ class Users_:
             return False
         return bcrypt.checkpw(password.encode('utf-8'),User['hash'])
 
-    def delete_user(username):
+    def delete_user(self, username):
         self._Users.delete_one({'username': username})
         return username
 
 """
 id: '', UNIQUE KEY
 body: 'house' || 'senate',
-authors: [chief, ...],
-title: '',
-fullText: '',
-shortText: '',
-lastAction: '',
-date: Date, (of last action)
-committe: '',
+author: '',
+last_action: '',
+summary: '',
 topic: '',
 """
 class Bills_:
@@ -53,10 +48,14 @@ class Bills_:
         self._Bills = db.bills
 
     def insert_bill(self, data):
+        if (self._Bills.find_one({'id':data.id})):
+            return False
         self._Bills.insert_one(data)
         return data['id']
 
     def delete_bill(self, id):
+        if (not self._Bills.find_one({'id':data.id})):
+            return False
         self._Bills.delete_one({'id': id})
         return id
 
@@ -94,7 +93,7 @@ parent: -1/non-existent OR (comment_id)
 class Comments_:
     def __init__(self, db):
         self._Comments = db.comments
-        self._nextId = self._Comments.find_one({},sort=['id',pymongo.DESCENDING]) + 1
+        self._nextId = 0
 
     def insert_comment(self, data):
         if (self._Comments.find_one(data)):
@@ -141,7 +140,7 @@ class Votes_:
         return data
 
 Users = Users_(db)
-Bills = Bills(db)
+Bills = Bills_(db)
 Subscriptions = Subscriptions_(db)
 Comments = Comments_(db)
 Votes = Votes_(db)
