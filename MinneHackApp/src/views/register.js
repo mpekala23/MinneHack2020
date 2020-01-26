@@ -99,7 +99,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
   },
   intro: {
-    flex: 0.16,
     fontSize: 36,
     alignSelf: 'center',
     margin: 8,

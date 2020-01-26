@@ -51,13 +51,13 @@ export default class BillsScreen extends React.Component {
             return (
                 <Card style={styles.card} key={bill.id}>
                     <Text style={styles.label}>{bill.id}</Text>
-                    <Text>Topic: {bill.topic}</Text>
-                    <Text>Author: {bill.author}</Text>
-                    <Text>Summary: {bill.summary}</Text>
-                    <Text>Body: {bill.body}</Text>
-                    <Text>Last Action: {bill.last_action}</Text>
-                    <Text>Upvotes: {bill.upvotes}</Text>
-                    <Text>Downvotes: {bill.downvotes}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Topic: </Text> {bill.topic} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Author: </Text> {bill.author} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Summary: </Text> {bill.summary} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Body: </Text> {bill.body} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Last Action: </Text> {bill.last_action} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Upvotes: </Text> {bill.upvotes} {"\n"}</Text>
+                    <Text style={styles.info}><Text style={{ fontWeight: 'bold' }}>Downvotes: </Text> {bill.downvotes} {"\n"}</Text>
                 </Card>
             );
         });
@@ -129,7 +129,16 @@ export default class BillsScreen extends React.Component {
       return (
         <View style={{ flex: 1, alignItems: 'center'}}>
           <Statusbar/>
-          <Text style={styles.title}>Hot Bills</Text>
+          <TouchableOpacity style={styles.titleBar}>
+            <Icon
+               name='ios-flame'
+               type='ionicon'
+               color='black'
+               size='30'
+              />
+            <Text style={styles.title}>  Hot Bills</Text>
+          </TouchableOpacity>
+
           <CardStack
             style={styles.content}
             renderNoMoreCards={this.renderNoMoreCards}
@@ -206,10 +215,18 @@ const styles = StyleSheet.create({
   },
   label: {
     textAlign: 'center',
-    fontSize: 55,
+    fontSize: 24,
+    justifyContent: 'center',
+    fontWeight: 'bold',
+    margin: 25,
+    alignSelf: 'center',
     fontFamily: 'System',
     color: '#000000',
     backgroundColor: 'transparent',
+  },
+  info: {
+    marginLeft: 30,
+    marginRight: 30,
   },
   footer:{
     flex:1,
@@ -243,4 +260,10 @@ const styles = StyleSheet.create({
       margin: 10,
       alignSelf: 'center'
   },
+  titleBar: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  }
 });

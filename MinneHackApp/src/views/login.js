@@ -75,10 +75,12 @@ export default class LoginScreen extends React.Component {
 
                 <Button
                   onPress={this.submit}
+                  style={styles.buttons}
                   title="Sign In"
                 />
                 <Button
                   onPress={() => navigate('Register')}
+                  style={styles.buttons}
                   title="Register"
                 />
                 <View style={{ height: 30 }} />
@@ -106,5 +108,9 @@ const styles = StyleSheet.create({
   },
   label: {
     fontSize: 20,
+  },
+  buttons: {
+    margin: 30,
+    height: 80,
   }
 });
