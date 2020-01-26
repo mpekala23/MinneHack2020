@@ -1,16 +1,21 @@
 from flask import Flask
-from flask_pymongo import PyMongo, MongoClient
-from pprint import pprint
+from storage import Users
 
 app = Flask(__name__)
-client = MongoClient("mongodb+srv://client:client@minnehack2020-dvyxh.gcp.mongodb.net/test?retryWrites=true&w=majority")
-db = client["sample_mflix"]
 
 @app.route('/')
 def homepage():
-    cursor = db.comments.find({})
-    for item in cursor:
-        print(item)
-    return str(db.comments.find({}))
+    return "home"
+
+@app.route('/add_user/<string:username>/<string:password>')
+def add_user(username, password):
+    if (Users.insert_user(username,password)):
+        return "Success, user added"
+    else:
+        return "Failure, user not added"
+
+@app.route('/check_user/<string:username>/<string:password>')
+def check_user(username, password):
+    return str(Users.check_user(username, password))
 
 app.run(debug=True)
