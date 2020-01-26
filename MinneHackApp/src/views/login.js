@@ -61,7 +61,7 @@ export default class LoginScreen extends React.Component {
                   placeholder='  Username'
                   onChangeText={this.onChangeUsername}
                   value={this.state.username}
-                  leftIcon={{ type: 'font-awesome', name: 'user' }}
+                  leftIcon={{ type: 'font-awesome', name: 'user', marginRight: 10,}}
                 />
                 <Input
                   style={styles.bod}
@@ -69,7 +69,7 @@ export default class LoginScreen extends React.Component {
                   secureTextEntry={true}
                   onChangeText={this.onChangePassword}
                   value={this.state.password}
-                  leftIcon={{ type: 'font-awesome', name: 'lock' }}
+                  leftIcon={{ type: 'font-awesome', name: 'lock' , marginRight: 10,}}
                 />
 
                 <Button
