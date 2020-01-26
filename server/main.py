@@ -107,5 +107,18 @@ def delete_subscription():
     except Exception as e:
         return str(e)
 
+
+@app.route('/vote')
+def vote():
+    try:
+        data = {
+            'value': request.form['value'],
+            'username': request.form['username'],
+            'bill_id': request.form['bill_id'],
+        }
+        return str(Bills.insert_vote(data))
+    except Exception as e:
+        return str(e)
+
 if __name__ == "__main__":
     app.run(debug=True)
