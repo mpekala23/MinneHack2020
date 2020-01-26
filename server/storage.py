@@ -83,6 +83,14 @@ class Bills_:
             result.append(item)
         return result
 
+    def get_user_bills(self, username, topics):
+        result = []
+        for topic in topics:
+            cursor = self._Bills.find({'topic': topic})
+            for item in cursor:
+                result.append(self.bill_to_dict(item))
+        return result
+
 """
 username: '',
 topic: '',

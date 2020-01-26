@@ -11,9 +11,10 @@ export function checkLogin(username, password) {
     );
 }
 
-export function getBills() {
+export function getBills(username) {
     return axios.get(API_URL + '/get_bills',{
         params: {
+            username: username
         }}
     );
 }
