@@ -131,7 +131,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'flex-end',
         height: 50,
-        borderWidth: 2,
+        borderWidth: 1,
         padding: 10,
     },
     subOptionActive: {
