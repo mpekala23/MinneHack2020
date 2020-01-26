@@ -8,12 +8,45 @@ import {
 } from 'react-native';
 import CardStack, { Card } from 'react-native-card-stack-swiper';
 import { Icon } from 'react-native-elements'
+import { getBills } from '../api';
+import Statusbar from '../components/statusbar.js';
 
 export default class BillsScreen extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            bills: [],
+        }
+    }
+
+    componentDidMount() {
+        getBills().then(
+            (res) => {
+                this.setState({bills: res.data.bills});
+            },
+            (err) => {}
+        );
+    }
+
+    renderBills = () => {
+        return this.state.bills.map((bill) => {
+            return (
+                <Card style={styles.card} key={bill.id}>
+                    <Text style={styles.label}>{bill.id}</Text>
+                    <Text>Topic: {bill.topic}</Text>
+                    <Text>Author: {bill.author}</Text>
+                    <Text>Summary: {bill.summary}</Text>
+                    <Text>Body: {bill.body}</Text>
+                    <Text>Last Action: {bill.last_action}</Text>
+                </Card>
+            );
+        });
+    }
+
     render(){
       return (
         <View style={{ flex: 1 }}>
-
+          <Statusbar/>
           <CardStack
             style={styles.content}
             renderNoMoreCards={() => <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>No more Bills :(</Text>}
@@ -23,10 +56,7 @@ export default class BillsScreen extends React.Component {
             onSwiped={() => console.log('onSwiped')}
             onSwipedLeft={() => console.log('onSwipedLeft')}
           >
-            <Card style={[styles.card]}><Text style={styles.label}>A</Text></Card>
-            <Card style={[styles.card]}><Text style={styles.label}>C</Text></Card>
-            <Card style={[styles.card]}><Text style={styles.label}>D</Text></Card>
-            <Card style={[styles.card]}><Text style={styles.label}>E</Text></Card>
+            {this.renderBills()}
           </CardStack>
 
           <View style={styles.footer}>
@@ -101,7 +131,6 @@ const styles = StyleSheet.create({
     shadowOpacity:0.5,
   },
   label: {
-    lineHeight: 400,
     textAlign: 'center',
     fontSize: 55,
     fontFamily: 'System',
