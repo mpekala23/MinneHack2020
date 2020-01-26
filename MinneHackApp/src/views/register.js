@@ -96,7 +96,7 @@ const styles = StyleSheet.create({
   intro: {
     flex: 0.3,
     fontSize: 36,
-    alignItems: 'center',
+    alignSelf: 'center',
     margin: 8
   },
 });

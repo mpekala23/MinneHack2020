@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
       flex: 0.4,
       fontSize: 50,
       fontWeight: 'bold',
-      margin: 4
+      margin: 4,
+      alignSelf: 'center'
     },
     inputField: {
       flexDirection: 'column',
