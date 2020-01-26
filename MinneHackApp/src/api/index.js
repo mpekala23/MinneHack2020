@@ -19,12 +19,15 @@ export function getBills() {
 }
 
 export function registerUser(username, password) {
-    return axios.post('https://hot-bills.herokuapp.com/insert_user',{
-        params: {
-              username: username,
-              psasword: password,
-        }}
-    );
+    let form = new FormData();
+    form.append('username', username)
+    form.append('password', password)
+    return axios({
+      method: 'post',
+      url: API_URL + '/insert_user',
+      data: form,
+      headers: {'Content-Type': 'multipart/form-data' }
+    });
 }
 
 export function getSubscriptions(username) {
