@@ -55,7 +55,7 @@ export default class LoginScreen extends React.Component {
             >
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
-
+                <KeyboardAvoidingView style={{flex:1, justifyContent: 'space-evenly'}} behavior={'padding'}>
                 <Input
                   style={styles.bod}
                   placeholder='  Username'
@@ -72,7 +72,6 @@ export default class LoginScreen extends React.Component {
                   leftIcon={{ type: 'font-awesome', name: 'lock' }}
                 />
 
-
                 <Button
                   onPress={this.submit}
                   style={styles.buttons}
@@ -83,7 +82,7 @@ export default class LoginScreen extends React.Component {
                   style={styles.buttons}
                   title="Register"
                 />
-                <View style={{ height: 30 }} />
+                </KeyboardAvoidingView>
             </TouchableOpacity>
         )
     }
@@ -92,10 +91,11 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
   header: {
     flex: 0.2,
-    justifyContent: 'center',
+    alignSelf: 'center',
     fontSize: 50,
     fontWeight: 'bold',
-    left: 10
+    left: 10,
+    marginTop: 80,
   },
   inputField: {
     flexDirection: 'column',
