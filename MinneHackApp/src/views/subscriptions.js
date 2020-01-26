@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
-import { Icon } from 'react-native-elements';
+import { Icon, ListItem } from 'react-native-elements';
 import Statusbar from '../components/statusbar.js';
 import { getSubscriptions, addSubscription, removeSubscription } from '../api';
 
@@ -80,27 +80,39 @@ export default class SubscriptionsScreen extends React.Component {
             let icon = 'add';
             if (subscribed) {
                 return (
-                    <View key={option} style={styles.subOptionActive}>
-                        <Text style={{flex:1}}>{option}</Text>
-                        <TouchableOpacity
-                            onPress={() => this.toggleSubscription(option, subscribed)}
-                            style={styles.icon}
-                        >
-                            <Icon name={'close'} size={30}/>
-                        </TouchableOpacity>
-                    </View>
+                    <ListItem
+                      key={option}
+                      title={option}
+                      titleStyle={{ color: 'white', fontWeight: 'bold' }}
+                      style={styles.subOption}
+                      linearGradientProps={{
+                        colors: ['#00e78b','#00d0e7'],
+                        start: [1, 0],
+                        end: [0.2, 0],
+                      }}
+                      leftIcon={<Icon
+                         name='close'
+                         type='ion-icon'
+                         color='#ffffff'
+                         onPress={() => this.toggleSubscription(option, subscribed)}
+                        />}
+                      bottomDivider
+                    />
                 );
             } else {
                 return (
-                    <View key={option} style={styles.subOption}>
-                        <Text style={{flex:1}}>{option}</Text>
-                        <TouchableOpacity
-                            onPress={() => this.toggleSubscription(option, subscribed)}
-                            style={styles.icon}
-                        >
-                            <Icon name={'add'} size={30}/>
-                        </TouchableOpacity>
-                    </View>
+                    <ListItem
+                      key={option}
+                      title={option}
+                      style={styles.subOption}
+                      leftIcon={<Icon
+                         name='add-circle-outline'
+                         type='ion-icon'
+                         color='#00e78b'
+                         onPress={() => this.toggleSubscription(option, subscribed)}
+                        />}
+                      bottomDivider
+                    />
                 );
             }
         });
@@ -125,27 +137,10 @@ const styles = StyleSheet.create({
     },
     title: {
         fontSize: 24,
+        justifyContent: 'center',
+        fontWeight: 'bold',
+        margin: 10,
+        alignSelf: 'center'
     },
-    subOption: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        height: 50,
-        borderWidth: 1,
-        padding: 10,
-    },
-    subOptionActive: {
-        flex: 1,
-        flexDirection: 'row',
-        alignItems: 'flex-end',
-        height: 50,
-        borderWidth: 2,
-        padding: 10,
-        backgroundColor: 'rgba(100,200,100,0.6)',
-    },
-    icon: {
-        alignSelf: 'flex-end',
-        width: 40,
-    }
 
 })
