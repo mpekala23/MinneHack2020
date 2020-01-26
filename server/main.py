@@ -1,5 +1,6 @@
 from flask import Flask, request, render_template, jsonify
 from flask_cors import CORS
+import random
 from storage import Users, Bills, Comments, Subscriptions, Votes
 
 app = Flask(__name__)
@@ -59,6 +60,8 @@ def get_bills():
         username = request.args['username']
         my_subs = Subscriptions.get_subscriptions(username)
         bills = Bills.get_user_bills(username, my_subs)
+        random.shuffle(bills)
+        bills = bills[:25]
         results = []
         for bill in bills:
             bill['upvotes'] = Votes.count_votes(bill['id'],'1')

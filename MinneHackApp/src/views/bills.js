@@ -16,36 +16,34 @@ export default class BillsScreen extends React.Component {
         super(props);
         this.state = {
             bills: [],
+            loading: false,
         }
     }
 
     loadBills = () => {
+        if (this.state.loadin) {
+            return;
+        }
+        this.setState({
+            loading: true,
+        });
         getBills(global.username).then(
             (res) => {
-                this.setState({bills: res.data.bills});
+                this.setState({
+                    bills: res.data.bills,
+                    loading: false,
+                });
             },
-            (err) => {}
+            (err) => {
+                this.setState({
+                    loading: false,
+                });
+            }
         );
     }
 
     componentDidMount() {
         this.loadBills();
-        this.subs = [
-          this.props.navigation.addListener('didFocus', this.componentDidFocus),
-          this.props.navigation.addListener('willBlur', this.componentWillBlur),
-        ];
-    }
-
-    componentWillUnmount() {
-      this.subs.forEach(sub => sub.remove());
-    }
-
-    componentDidFocus = () => {
-        this.loadBills();
-    }
-
-    componentWillBlur = () => {
-
     }
 
     renderBills = () => {
@@ -87,19 +85,36 @@ export default class BillsScreen extends React.Component {
         );
     }
 
+    renderNoMoreCards = () => {
+        return (
+            <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>
+                No more bills :(
+            </Text>
+        );
+    }
+
+    loadingStatus = () => {
+        if (this.state.loading) {
+            return (
+                <Image
+                  style={{width: 50, height: 50}}
+                  source={require('../assets/loading.gif')}
+                />
+            );
+        } else {
+            return <View style={{width: 50, height: 50}}/>
+        }
+    }
+
     render(){
       return (
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, alignItems: 'center'}}>
           <Statusbar/>
           <Text style={styles.title}>Hot Bills</Text>
+          {this.loadingStatus()}
           <CardStack
             style={styles.content}
-            renderNoMoreCards={() => {
-                return (
-                    <Text style={{ fontWeight: '700', fontSize: 18, color: 'gray' }}>
-                        No more bills :(
-                    </Text>
-                )}}
+            renderNoMoreCards={this.renderNoMoreCards}
             ref={swiper => {
               this.swiper = swiper
             }}
@@ -116,7 +131,7 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='ios-heart'
                    type='ionicon'
-                   color='#00e78b'
+                   color='red'
                    size={40}
                   />
               </TouchableOpacity>
@@ -126,24 +141,25 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='ios-trash'
                    type='ionicon'
-                   color='#ff2c14'
+                   color='grey'
                    size={40}
                   />
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.btnStyle} activeOpacity={0.5}>
+              <TouchableOpacity
+                style={styles.btnStyle}
+                activeOpacity={0.5}
+                onPress={this.loadBills}
+              >
                 <Icon
                    reverse
-                   name='ios-text'
-                   type='ionicon'
-                   color='#efba12'
+                   name='refresh'
+                   color='green'
                    size={40}
                   />
               </TouchableOpacity>
             </View>
-
           </View>
-
         </View>
       );
   }
@@ -189,7 +205,7 @@ const styles = StyleSheet.create({
   },
   footer:{
     flex:1,
-    marginBottom:70,
+    marginBottom:0,
   },
   buttonContainer:{
     width:220,

@@ -55,20 +55,23 @@ export default class LoginScreen extends React.Component {
             >
                 <Statusbar/>
                 <Text style={styles.header}>Login</Text>
+
                 <Input
                   style={styles.bod}
-                  placeholder='Username'
+                  placeholder='  Username'
                   onChangeText={this.onChangeUsername}
                   value={this.state.username}
                   leftIcon={{ type: 'font-awesome', name: 'user' }}
                 />
                 <Input
                   style={styles.bod}
-                  placeholder='Password'
+                  placeholder='  Password'
+                  secureTextEntry={true}
                   onChangeText={this.onChangePassword}
                   value={this.state.password}
                   leftIcon={{ type: 'font-awesome', name: 'lock' }}
                 />
+
 
                 <Button
                   onPress={this.submit}
@@ -78,28 +81,30 @@ export default class LoginScreen extends React.Component {
                   onPress={() => navigate('Register')}
                   title="Register"
                 />
-              {/*}<TouchableOpacity onPress={() => navigate('Register')}>
-                  <Text>Register</Text>
-              </TouchableOpacity>
-              <TouchableOpacity onPress={this.submit}>
-                  <Text>Log in</Text>
-              </TouchableOpacity>*/}
+                <View style={{ height: 30 }} />
             </TouchableOpacity>
-
         )
     }
 }
 
 const styles = StyleSheet.create({
-    header: {
-      flex: 0.1,
-      justifyContent: 'center',
-      fontSize: 50,
-      fontWeight: 'bold',
-      margin: 4,
-      alignSelf: 'center'
-    },
-    label: {
-      fontSize: 20,
-    },
+  header: {
+    flex: 0.2,
+    justifyContent: 'center',
+    fontSize: 50,
+    fontWeight: 'bold',
+    left: 10
+  },
+  inputField: {
+    flexDirection: 'column',
+    margin: 4,
+  },
+  inputSpace: {
+    height: 25,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  label: {
+    fontSize: 20,
+  }
 });
