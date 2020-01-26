@@ -40,8 +40,8 @@ const AppNavigator = createBottomTabNavigator(
     {
         initialRouteName: 'Bills',
         tabBarOptions: {
-            activeTintColor: 'rgba(100,200,100,1)',
-            inactiveTintColor: 'rgba(100,200,100,0.5)',
+            activeTintColor: 'rgba(100,100,200,1)',
+            inactiveTintColor: 'rgba(100,100,200,0.5)',
             style: {
                 backgroundColor: 'white',
             },

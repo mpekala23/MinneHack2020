@@ -58,14 +58,15 @@ export default class LoginScreen extends React.Component {
 
                 <Input
                   style={styles.bod}
-                  placeholder='Username'
+                  placeholder='  Username'
                   onChangeText={this.onChangeUsername}
                   value={this.state.username}
                   leftIcon={{ type: 'font-awesome', name: 'user' }}
                 />
                 <Input
                   style={styles.bod}
-                  placeholder='Password'
+                  placeholder='  Password'
+                  secureTextEntry={true}
                   onChangeText={this.onChangePassword}
                   value={this.state.password}
                   leftIcon={{ type: 'font-awesome', name: 'lock' }}
@@ -80,6 +81,7 @@ export default class LoginScreen extends React.Component {
                   onPress={() => navigate('Register')}
                   title="Register"
                 />
+                <View style={{ height: 30 }} />
             </TouchableOpacity>
         )
     }

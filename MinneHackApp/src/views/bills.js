@@ -97,18 +97,18 @@ export default class BillsScreen extends React.Component {
         if (this.state.loading) {
             return (
                 <Image
-                  style={{width: 50, height: 50}}
+                  style={{width: 60, height: 60, marginTop: 30}}
                   source={require('../assets/loading.gif')}
                 />
             );
         } else {
-            return <View style={{width: 50, height: 50}}/>
+            return <View style={{width: 60, height: 60, marginTop: 30}}/>
         }
     }
 
     render(){
       return (
-        <View style={{ flex: 1, alignItems: 'center' }}>
+        <View style={{ flex: 1, alignItems: 'center'}}>
           <Statusbar/>
           {this.loadingStatus()}
           <CardStack
@@ -131,7 +131,7 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='ios-trash'
                    type='ionicon'
-                   color='#333333'
+                   color='grey'
                    size={40}
                   />
               </TouchableOpacity>
@@ -144,7 +144,7 @@ export default class BillsScreen extends React.Component {
                 <Icon
                    reverse
                    name='refresh'
-                   color='#efba12'
+                   color='green'
                    size={40}
                   />
               </TouchableOpacity>
@@ -154,7 +154,7 @@ export default class BillsScreen extends React.Component {
                    reverse
                    name='ios-heart'
                    type='ionicon'
-                   color='#ff5555'
+                   color='#ff2222'
                    size={40}
                   />
               </TouchableOpacity>
@@ -187,6 +187,7 @@ const styles = StyleSheet.create({
   card:{
     width: 350,
     height: 300,
+    marginTop: -70,
     backgroundColor: '#ffffff',
     borderRadius: 5,
     shadowColor: 'rgba(0,0,0,0.5)',
