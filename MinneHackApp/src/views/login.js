@@ -94,10 +94,9 @@ export default class LoginScreen extends React.Component {
 const styles = StyleSheet.create({
     header: {
       flex: 0.4,
-      justifyContent: 'center',
       fontSize: 50,
       fontWeight: 'bold',
-      left: 10
+      margin: 4
     },
     inputField: {
       flexDirection: 'column',
