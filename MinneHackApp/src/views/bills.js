@@ -66,12 +66,10 @@ export default class BillsScreen extends React.Component {
     onSwipedRight = (ix) => {
         vote(this.state.bills[ix]['id'],1,global.username).then(
             (res) => {
-                console.log('success');
-                console.log(res);
+                console.log('voted');
             },
             (err) => {
-                console.log('error');
-                console.log(err);
+                console.log('error voting');
             }
         );
     }
@@ -79,12 +77,10 @@ export default class BillsScreen extends React.Component {
     onSwipedLeft = (ix) => {
         vote(this.state.bills[ix]['id'],-1,global.username).then(
             (res) => {
-                console.log('success');
-                console.log(res);
+                console.log('voted');
             },
             (err) => {
-                console.log('error');
-                console.log(err);
+                console.log('error voting');
             }
         );
     }

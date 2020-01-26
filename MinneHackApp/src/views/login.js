@@ -96,7 +96,8 @@ const styles = StyleSheet.create({
       justifyContent: 'center',
       fontSize: 50,
       fontWeight: 'bold',
-      left: 10
+      margin: 4,
+      alignSelf: 'center'
     },
     label: {
       fontSize: 20,

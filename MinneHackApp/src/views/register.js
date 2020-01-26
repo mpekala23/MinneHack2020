@@ -32,6 +32,8 @@ export default class SubscriptionsScreen extends React.Component {
             (res) => {
                 if (res.data.status) {
                     this.props.navigation.navigate('App');
+                } else {
+                    alert('Unable to register');
                 }
             },
             (err) => {
@@ -42,19 +44,24 @@ export default class SubscriptionsScreen extends React.Component {
 
     render() {
         return (
-            <View>
+            <View
+              style={{flex:1, justifyContent: 'space-evenly'}}
+              onPress={() => {
+                  Keyboard.dismiss();
+                }}
+                activeOpacity={1.0}
+            >
                 <Statusbar/>
-                <Text>Sign up to see the hottest bills trending in your area.</Text>
-                <Text style={styles.header}>Login</Text>
+                <Text style = {styles.intro}>Sign up to see the hottest bills trending in your area.</Text>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Username:</Text>
+                    <Text style={styles.label}>Username:</Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangeUsername}
                     />
                 </View>
                 <View style={styles.inputField}>
-                    <Text style={styles.inputLabel}>Password:</Text>
+                    <Text style={styles.label}>Password:</Text>
                     <TextInput
                         style={styles.inputSpace}
                         onChangeText={this.onChangePassword}
@@ -69,17 +76,28 @@ export default class SubscriptionsScreen extends React.Component {
 }
 
 const styles = StyleSheet.create({
-    header: {
-
-    },
-    inputField: {
-        flexDirection: 'row',
-    },
-    inputSpace: {
-        flex: 1,
-        height: 25,
-        borderWidth: 1,
-        margin: 4,
-        borderRadius: 5,
-    }
+  header: {
+    flex: 0.4,
+    fontSize: 50,
+    fontWeight: 'bold',
+    left: 4
+  },
+  inputField: {
+    flexDirection: 'column',
+    margin: 4,
+  },
+  inputSpace: {
+    height: 25,
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  label: {
+    fontSize: 20,
+  },
+  intro: {
+    flex: 0.3,
+    fontSize: 36,
+    alignSelf: 'center',
+    margin: 8
+  },
 });
